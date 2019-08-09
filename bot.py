@@ -25,17 +25,17 @@ else:
 	CreatorID = CreatorID
 
 bot = telegram.Bot(token=TOKEN)
-updater = Updater(token=TOKEN, use_context=True)
+updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
-def Start(bot, update, context):
+def Start(bot, update):
 	update.effective_message.reply_text("Hai!")
 
-def Reply(bot, update, context):
+def Reply(bot, update):
 	msg = update.effective_message.text
 	update.effective_message.reply_text(msg)
 
-def SendToCreator(bot, update, context):
+def SendToCreator(bot, update):
 	name = update.effective_message.from_user.first_name
 	msg = update.effective_message
 	text = update.effective_message.text
@@ -49,7 +49,7 @@ def SendToCreator(bot, update, context):
 	bot.sendMessage(CreatorID, message, parse_mode=ParseMode.MARKDOWN)
 	update.effective_message.reply_text("Message was sent!")
 
-def Log(bot, update, context):
+def Log(bot, update):
 	message = update.effective_message
 	eventdict = message.to_dict()
 	jsondump = json.dumps(eventdict, indent=4)
